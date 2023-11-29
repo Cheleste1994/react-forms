@@ -1,5 +1,6 @@
 import React from 'react';
 import convertPhotoBase64 from '../../../common/convertFileToBase64';
+import Autocomplete from '../../../components/Autocomplete/Autocomplete';
 import '../registration.scss';
 
 export default function UncontrolledForm() {
@@ -15,10 +16,12 @@ export default function UncontrolledForm() {
       sex: formData.get('sex'),
       rules: !!formData.get('rules'),
       photo: formData.get('photo') as File,
+      country: formData.get('country'),
     };
 
     const base64 = await convertPhotoBase64(objData.photo);
     console.log(base64);
+    console.log(objData);
   };
   return (
     <main className="main">
@@ -50,6 +53,10 @@ export default function UncontrolledForm() {
             <option>Man</option>
             <option>Women</option>
           </select>
+        </label>
+        <label htmlFor="country" style={{ position: 'relative' }}>
+          Select country
+          <Autocomplete />
         </label>
         <label htmlFor="rules">
           Accept T&C:

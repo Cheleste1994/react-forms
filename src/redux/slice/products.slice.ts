@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductList } from '../../types/interface';
 
 export interface ProductsSlice {
   dataSearch: {
     isLoading: boolean;
-    dataResponse: ProductList | undefined;
+    dataResponse: undefined;
   };
   searchValue: string;
   page: number;
@@ -27,7 +26,7 @@ const productSlice = createSlice({
       state,
       action: PayloadAction<{
         isLoading: boolean;
-        productList: ProductList | undefined;
+        productList: undefined;
       }>
     ) => {
       state.dataSearch.isLoading = action.payload?.isLoading;

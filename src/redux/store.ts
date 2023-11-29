@@ -1,11 +1,13 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import productsApi from './api/productsApi';
-import productSlice from './slice/products.slice';
+import productReducer from './slice/products.slice';
+import countriesReducer from './slice/countries.slice';
 
 export const store = configureStore({
   reducer: {
     [productsApi.reducerPath]: productsApi.reducer,
-    productSlice,
+    productReducer,
+    countriesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(productsApi.middleware),
