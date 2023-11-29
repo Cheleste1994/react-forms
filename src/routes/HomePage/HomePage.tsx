@@ -1,11 +1,14 @@
 import React from 'react';
-import styles from './Home.module.scss';
+import { Outlet } from 'react-router-dom';
+import Header from '../../components/Header/Header';
 
 export default function HomePage(): JSX.Element {
   return (
     <>
-      <main className={styles.main} data-testid="page-home">
-
+      <Header />
+      <main data-testid="page-home">
+        <Outlet />
+        Home Page
       </main>
     </>
   );
