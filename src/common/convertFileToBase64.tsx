@@ -5,7 +5,9 @@ export default function convertPhotoBase64(file: File): Promise<string> {
     reader.readAsDataURL(file);
 
     reader.onload = function () {
-      resolve(reader.result as string);
+      if (typeof reader.result === 'string') {
+        resolve(reader.result);
+      }
     };
 
     reader.onerror = function () {

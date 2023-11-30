@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useAppSelector } from '../../redux/hooks/hooks';
-import styles from './Autocomplete.module.scss';
+import { useAppSelector } from '../../../redux/hooks/hooks';
+import styles from '../Autocomplete.module.scss';
 
 export default function Autocomplete() {
   const [searchCountries, setSearchCountries] = useState('');

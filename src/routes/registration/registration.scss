@@ -21,24 +21,15 @@ h1 {
   width: 100%;
   margin: 0 auto;
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     margin-left: 10px;
     width: 15px;
     height: 15px;
   }
 }
 
-p {
-  color: white;
-  margin-bottom: 40px;
-}
-
-p::before {
-  display: inline;
-  content: "⚠ ";
-}
-
-input:not(input[type='checkbox']), select {
+input:not(input[type='checkbox']),
+select {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -54,11 +45,19 @@ label {
   line-height: 2;
   text-align: left;
   display: block;
-  margin-bottom: 13px;
-  margin-top: 20px;
   color: white;
   font-size: 14px;
   font-weight: 200;
+  position: relative;
+
+  span {
+    color: rgb(255, 0, 0);
+    z-index: 99;
+    &::before {
+      display: inline;
+      content: '⚠ ';
+    }
+  }
 }
 
 button[type='submit'],
@@ -104,7 +103,7 @@ button[type='submit'],
 select[type='submit'],
 input[type='button'],
 input[type='submit'] {
- appearance: none;
+  appearance: none;
 }
 
 nav {
