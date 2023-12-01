@@ -53,8 +53,9 @@ export default function UncontrolledForm() {
     };
     setValidData({ isSubmit: true, formData: { ...objData } });
 
-    if (!Object.values(objData).includes(null || false)) {
-      console.log(objData);
+    const valuesForm = Object.values(objData);
+
+    if (valuesForm.filter((el) => el).length === valuesForm.length) {
       navigate('/');
     }
   };
@@ -84,26 +85,32 @@ export default function UncontrolledForm() {
           isSubmit={validData.isSubmit}
           validMessage={'Not correct email'}
         />
-        <label htmlFor="new-password" key={'new-password'}>
-          Passwords
+        <CustomLabel
+          name={'new-password'}
+          labelText={'Passwords'}
+          isValid={Boolean(validData.formData.password)}
+          isSubmit={validData.isSubmit}
+          validMessage={
+            'Password strength: 1 number, 1 uppercased letter, 1 lowercased letter, 1 special character'
+          }
+        >
           <input type={'password'} name="new-password" required />
           Repeat password
           <input type={'password'} name="repeat-password" required />
-          {!validData.formData.password && validData.isSubmit && (
-            <span>
-              Password strength: 1 number, 1 uppercased letter, 1 lowercased
-              letter, 1 special character
-            </span>
-          )}
-        </label>
-        <label htmlFor="sex" key={'sex'}>
-          Gender
+        </CustomLabel>
+        <CustomLabel
+          name={'sex'}
+          labelText={'Gender'}
+          isValid={Boolean(validData.formData.password)}
+          isSubmit={validData.isSubmit}
+          validMessage={''}
+        >
           <select name="sex" id="sex" required>
             <option></option>
             <option>Man</option>
             <option>Women</option>
           </select>
-        </label>
+        </CustomLabel>
         <CustomLabel
           name={'country'}
           labelText={'Select country'}
@@ -123,7 +130,7 @@ export default function UncontrolledForm() {
         />
         <CustomLabel
           name={'photo'}
-          labelText={' Upload picture'}
+          labelText={'Upload picture'}
           isValid={Boolean(validData.formData.photo)}
           isSubmit={validData.isSubmit}
           validMessage={'png jpeg no more than 5mb'}

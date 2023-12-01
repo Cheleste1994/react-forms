@@ -50,12 +50,13 @@ label {
   font-weight: 200;
   position: relative;
 
-  span {
-    color: rgb(255, 0, 0);
+   span {
     z-index: 99;
+
     &::before {
       display: inline;
       content: '⚠ ';
+      color: rgb(255, 0, 0);
     }
   }
 }
