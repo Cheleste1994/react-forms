@@ -11,17 +11,20 @@ export default function HomePage(): JSX.Element {
     <>
       <Header />
       <main data-testid="page-home">
-        {!username && 'Home Page'}
-        <div className={styles.user}>
-          {username && <div>Name: {username}</div>}
-          {photo && (
-            <img src={photo} alt="Base64 Image" className={styles.photo} />
-          )}
-          {age && <div>Age: {age}</div>}
-          {country && <div>Country: {country}</div>}
-          {email && <div>Email: {email}</div>}
-          {sex && <div>Gender: {sex}</div>}
-        </div>
+        {!username ? (
+          'Home Page'
+        ) : (
+          <div className={styles.user}>
+            {username && <div>Name: {username}</div>}
+            {photo && (
+              <img src={photo} alt="Base64 Image" className={styles.photo} />
+            )}
+            {age && <div>Age: {age}</div>}
+            {country && <div>Country: {country}</div>}
+            {email && <div>Email: {email}</div>}
+            {sex && <div>Gender: {sex}</div>}
+          </div>
+        )}
       </main>
     </>
   );
