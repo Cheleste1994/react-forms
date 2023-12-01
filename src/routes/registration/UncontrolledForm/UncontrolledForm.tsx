@@ -10,6 +10,8 @@ import {
 } from '../../../common/validationForm';
 import Autocomplete from '../../../components/Autocomplete/Uncontrolled/Autocomplete';
 import CustomLabel from '../../../components/CustomLabel/CustomLabel';
+import { useAppDispatch } from '../../../redux/hooks/hooks';
+import { addUser } from '../../../redux/slice/user.slice';
 import { IFormData } from '../../../types/formData';
 import '../registration.scss';
 
@@ -31,6 +33,8 @@ export default function UncontrolledForm() {
     },
   });
 
+  const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -46,7 +50,7 @@ export default function UncontrolledForm() {
         formData.get('new-password'),
         formData.get('repeat-password')
       ),
-      sex: !!formData.get('sex'),
+      sex: formData.get('sex') as string,
       rules: !!formData.get('rules'),
       photo: await checkValidationPhoto(formData.get('photo')),
       country: checkValidationCountry(formData.get('country')),
@@ -56,6 +60,7 @@ export default function UncontrolledForm() {
     const valuesForm = Object.values(objData);
 
     if (valuesForm.filter((el) => el).length === valuesForm.length) {
+      dispatch(addUser(objData));
       navigate('/');
     }
   };
