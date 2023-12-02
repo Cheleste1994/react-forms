@@ -1,48 +1,33 @@
 import React, { useState } from 'react';
-import { useAppSelector } from '../../../redux/hooks/hooks';
-import styles from '../Autocomplete.module.scss';
+import { UseFormRegister } from 'react-hook-form';
+import { FormDataSchema } from '../../../common/schema';
 
-export default function Autocomplete() {
+import { useAppSelector } from '../../../redux/hooks/hooks';
+
+export default function Autocomplete({
+  register,
+}: {
+  register: UseFormRegister<FormDataSchema>;
+}) {
   const [searchCountries, setSearchCountries] = useState('');
 
   const store = useAppSelector((store) => store.countriesReducer);
 
-  const countries = store.filter((country) =>
-    country.name.toLowerCase().includes(searchCountries.toLowerCase())
-  );
   return (
     <>
       <input
-        name="country"
-        id="country"
+        {...register('country', { required: true })}
         value={searchCountries}
         onChange={(e) => setSearchCountries(e.target.value)}
+        list="country"
       />
-      <div
-        className={styles.autocomplete}
-        style={{
-          visibility:
-            searchCountries && searchCountries !== countries[0]?.name
-              ? 'visible'
-              : 'hidden',
-        }}
-      >
-        {(countries.length > 0 &&
-          countries.map((el, index) => (
-            <div
-              key={`${el.code}${index}`}
-              onClick={() => setSearchCountries(el.name)}
-            >
-              <span>+{el.code}</span>
-              <span>{el.name}</span>
-            </div>
-          ))) ||
-          (searchCountries && (
-            <div>
-              <span>Not found!</span>
-            </div>
-          ))}
-      </div>
+      <datalist id="country">
+        {store.map((country, index) => (
+          <option key={`${country.code}${index}`} value={country.name}>
+            {country.name}
+          </option>
+        ))}
+      </datalist>
     </>
   );
 }

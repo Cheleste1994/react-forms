@@ -6,7 +6,7 @@ type ValueForm = FormDataEntryValue | null;
 const regex = {
   username: /^[A-Z]/,
   email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  password: /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z\d]).{8,}$/,
+  password: /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z\d])/,
 };
 
 export const checkValidationUsername = (username: ValueForm): string | null => {
