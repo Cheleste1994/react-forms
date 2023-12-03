@@ -394,17 +394,3 @@ export const allCountries: Array<Country> = [
   { icon: 'рџ‡їрџ‡І', name: 'Zambia', abbr: 'ZM', code: '260' },
   { icon: 'рџ‡їрџ‡ј', name: 'Zimbabwe', abbr: 'ZW', code: '263' },
 ];
-
-export const groupedCountries: Array<{
-  label: string;
-  options: Array<Country>;
-}> = [
-  {
-    label: 'Suggested',
-    options: allCountries.filter((c) => c.suggested),
-  },
-  {
-    label: 'All Countries',
-    options: allCountries.filter((c) => !c.suggested),
-  },
-];
