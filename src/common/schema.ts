@@ -15,9 +15,13 @@ export const schema = yup
   .object({
     username: yup
       .string()
-      .matches(regex.username, 'first uppercased letter')
+      .matches(regex.username, 'First uppercased letter')
       .required(),
-    age: yup.number().positive('no negative values').integer().required(),
+    age: yup
+      .number()
+      .positive('no negative values')
+      .integer('no negative values')
+      .required(),
     email: yup.string().email('Please enter a valid email').required(),
     password: yup
       .string()

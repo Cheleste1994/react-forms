@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { FormDataSchema, schema } from '../../../common/schema';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import styles from '../../../components/CustomLabel/CustomLabel.module.scss';
 
 import '../registration.scss';
 import Autocomplete from '../../../components/Autocomplete/Controlled/Autocomplete';
@@ -11,6 +10,7 @@ import convertPhotoBase64 from '../../../common/convertFileToBase64';
 import { addUser } from '../../../redux/slice/users.slice';
 import { useAppDispatch } from '../../../redux/hooks/hooks';
 import { useNavigate } from 'react-router-dom';
+import CustomLabel from '../../../components/CustomLabel/Controlled/CustomLabel';
 
 export default function ControlledForm() {
   const {
@@ -44,77 +44,50 @@ export default function ControlledForm() {
         onSubmit={handleSubmit(onSubmit)}
         autoComplete={'on'}
       >
-        <label htmlFor="username">
-          Name
-          <input
-            {...register('username')}
-            aria-invalid={errors.username ? 'true' : 'false'}
-          />
-          {errors.username && (
-            <span className={styles.validation}>
-              <span className={styles.message}>First uppercased letter</span>
-            </span>
-          )}
-        </label>
-        <label htmlFor="age">
-          Age
-          <input
-            {...register('age')}
-            aria-invalid={errors.age ? 'true' : 'false'}
-          />
-          {errors.age && (
-            <span className={styles.validation}>
-              <span className={styles.message}>
-                Should be number, no negative values
-              </span>
-            </span>
-          )}
-        </label>
-        <label htmlFor="email">
-          Email
-          <input
-            {...register('email')}
-            aria-invalid={errors.email ? 'true' : 'false'}
-          />
-          {errors.email && (
-            <span className={styles.validation}>
-              <span className={styles.message}>{errors.email.message}</span>
-            </span>
-          )}
-        </label>
-        <label htmlFor="password">
-          Passwords
-          <input
-            {...register('password')}
-            aria-invalid={errors.password ? 'true' : 'false'}
-            type="password"
-          />
-          {errors.password && (
-            <span className={styles.validation}>
-              <span className={styles.message}>
-                Password strength: 1 number, 1 uppercased letter, 1 lowercased
-                letter, 1 special character
-              </span>
-            </span>
-          )}
-        </label>
-        <label htmlFor="confirmPassword">
-          Repeat password
-          <input
-            {...register('confirmPassword')}
-            aria-invalid={errors.confirmPassword ? 'true' : 'false'}
-            type="password"
-          />
-          {errors.confirmPassword && (
-            <span className={styles.validation}>
-              <span className={styles.message}>
-                {errors.confirmPassword.message}
-              </span>
-            </span>
-          )}
-        </label>
-        <label htmlFor="sex">
-          Gender
+        <CustomLabel
+          name={'username'}
+          labelText={'Name'}
+          register={register}
+          key="username"
+          errors={errors}
+        />
+        <CustomLabel
+          name={'age'}
+          labelText={'Age'}
+          register={register}
+          key="age"
+          errors={errors}
+        />
+        <CustomLabel
+          name={'email'}
+          labelText={'Email'}
+          register={register}
+          key="email"
+          errors={errors}
+        />
+        <CustomLabel
+          name={'password'}
+          labelText={'Passwords'}
+          register={register}
+          key="password"
+          errors={errors}
+          type="password"
+        />
+        <CustomLabel
+          name={'confirmPassword'}
+          labelText={'Repeat password'}
+          register={register}
+          key="confirmPassword"
+          errors={errors}
+          type="password"
+        />
+        <CustomLabel
+          name={'sex'}
+          labelText={'Gender'}
+          register={register}
+          key="sex"
+          errors={errors}
+        >
           <select
             {...register('sex')}
             aria-invalid={errors.confirmPassword ? 'true' : 'false'}
@@ -123,39 +96,32 @@ export default function ControlledForm() {
             <option>Man</option>
             <option>Women</option>
           </select>
-          {errors.sex && (
-            <span className={styles.validation}>
-              <span className={styles.message}>{errors.sex.message}</span>
-            </span>
-          )}
-        </label>
-        <label htmlFor="country">
-          Select country
+        </CustomLabel>
+        <CustomLabel
+          name={'country'}
+          labelText={'Select country'}
+          register={register}
+          key="country"
+          errors={errors}
+        >
           <Autocomplete register={register} />
-          {errors.country && (
-            <span className={styles.validation}>
-              <span className={styles.message}>{errors.country.message}</span>
-            </span>
-          )}
-        </label>
-        <label htmlFor="rules">
-          Accept T&C
-          <input {...register('rules')} type={'checkbox'} />
-          {errors.rules && (
-            <span className={styles.validation}>
-              <span className={styles.message}>{errors.rules.message}</span>
-            </span>
-          )}
-        </label>
-        <label htmlFor="photo">
-          Upload picture
-          <input {...register('photo')} type="file" accept=".jpeg, .png" />
-          {errors.photo && (
-            <span className={styles.validation}>
-              <span className={styles.message}>{errors.photo.message}</span>
-            </span>
-          )}
-        </label>
+        </CustomLabel>
+        <CustomLabel
+          name={'rules'}
+          labelText={'Accept T&C'}
+          register={register}
+          key="rules"
+          errors={errors}
+          type="checkbox"
+        />
+        <CustomLabel
+          name={'photo'}
+          labelText={'Upload picture'}
+          register={register}
+          key="photo"
+          errors={errors}
+          type="file"
+        />
 
         <input type="submit" disabled={!isValid} />
       </form>

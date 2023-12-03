@@ -1,30 +1,36 @@
 import React from 'react';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FormDataSchema } from '../../../common/schema';
 import styles from '../CustomLabel.module.scss';
 
 type LabelProps = {
-  name: string;
+  name: keyof FormDataSchema;
   labelText: string;
-  validMessage: string;
-  isValid: boolean;
-  isSubmit: boolean;
   children?: React.ReactNode;
   type?: string;
+  register: UseFormRegister<FormDataSchema>;
+  errors: FieldErrors<FormDataSchema>;
 };
 
 export default function CustomLabel(props: LabelProps) {
-  const { name, labelText, validMessage, isValid, isSubmit, children, type } =
-    props;
+  const { name, labelText, errors, children, type, register } = props;
+
   return (
-    <label htmlFor={name} key={name} className={styles.label}>
+    <label htmlFor={name}>
       {labelText}
       {children ? (
         children
       ) : (
-        <input id={name} name={name} required type={type} />
+        <input
+          {...register(name)}
+          aria-invalid={errors[name] ? 'true' : 'false'}
+          type={type}
+          accept={type === 'file' ? '.jpeg, .png' : undefined}
+        />
       )}
-      {isSubmit && !isValid && validMessage && (
+      {errors[name] && (
         <span className={styles.validation}>
-          <span className={styles.message}>{validMessage}</span>
+          <span className={styles.message}>{errors[name]?.message}</span>
         </span>
       )}
     </label>
