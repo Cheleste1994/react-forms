@@ -1,0 +1,29 @@
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  gap: 20px;
+
+  div:last-child:not(:first-child) {
+    animation: anima ease-in-out 0.8s 6;
+  }
+
+  @keyframes anima {
+    0% {
+      border-color: white;
+    }
+
+    50% {
+      border-color: aqua;
+    }
+
+    100% {
+      border-color: white;
+    }
+  }
+}
