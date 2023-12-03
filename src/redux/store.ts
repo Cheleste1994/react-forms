@@ -1,11 +1,11 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import countriesReducer from './slice/countries.slice';
-import userReducer from './slice/user.slice';
+import usersReducer from './slice/users.slice';
 
 export const store = configureStore({
   reducer: {
     countriesReducer,
-    userReducer,
+    usersReducer,
   },
 });
 

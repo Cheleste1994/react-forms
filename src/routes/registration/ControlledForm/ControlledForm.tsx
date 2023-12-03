@@ -8,7 +8,7 @@ import styles from '../../../components/CustomLabel/CustomLabel.module.scss';
 import '../registration.scss';
 import Autocomplete from '../../../components/Autocomplete/Controlled/Autocomplete';
 import convertPhotoBase64 from '../../../common/convertFileToBase64';
-import { addUser } from '../../../redux/slice/user.slice';
+import { addUser } from '../../../redux/slice/users.slice';
 import { useAppDispatch } from '../../../redux/hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 

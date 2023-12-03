@@ -1,29 +1,24 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
+import UserCard from '../../components/UserCard/UserCard';
 import { useAppSelector } from '../../redux/hooks/hooks';
 import styles from './HomePage.module.scss';
 
 export default function HomePage(): JSX.Element {
-  const { username, photo, age, country, email, sex } = useAppSelector(
-    (store) => store.userReducer
-  );
+  const users = useAppSelector((store) => store.usersReducer);
+
   return (
     <>
       <Header />
-      <main data-testid="page-home">
-        {!username ? (
+      <main className={styles.main} key={`home-page-main`}>
+        {!users.length ? (
           'Home Page'
         ) : (
-          <div className={styles.user}>
-            {username && <div>Name: {username}</div>}
-            {photo && (
-              <img src={photo} alt="Base64 Image" className={styles.photo} />
-            )}
-            {age && <div>Age: {age}</div>}
-            {country && <div>Country: {country}</div>}
-            {email && <div>Email: {email}</div>}
-            {sex && <div>Gender: {sex}</div>}
-          </div>
+          <>
+            {users.map((user) => (
+              <UserCard key={user.id} {...user} />
+            ))}
+          </>
         )}
       </main>
     </>

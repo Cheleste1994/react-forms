@@ -11,7 +11,7 @@ import {
 import Autocomplete from '../../../components/Autocomplete/Uncontrolled/Autocomplete';
 import CustomLabel from '../../../components/CustomLabel/CustomLabel';
 import { useAppDispatch } from '../../../redux/hooks/hooks';
-import { addUser } from '../../../redux/slice/user.slice';
+import { addUser } from '../../../redux/slice/users.slice';
 import { IFormData } from '../../../types/formData';
 import '../registration.scss';
 
